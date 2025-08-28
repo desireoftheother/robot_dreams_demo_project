@@ -1,0 +1,6 @@
+apache-airflow
+polars
+uv
+ruff
+loguru
+
