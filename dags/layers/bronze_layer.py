@@ -7,17 +7,15 @@ from loguru import logger
 
 def _get_input_path(
     base_input_path: Path,
-    execution_time: datetime.datetime,
+    execution_time: str,
     prefix: str,
     city_name: str,
 ) -> Path:
-    return base_input_path / execution_time.isoformat() / prefix / f"{city_name}.json"
+    return base_input_path / execution_time / prefix / f"{city_name}.json"
 
 
-def _get_output_path(
-    base_output_path: Path, execution_time: datetime.datetime, prefix: str
-) -> Path:
-    write_path: Path = base_output_path / execution_time.isoformat() / prefix
+def _get_output_path(base_output_path: Path, execution_time: str, prefix: str) -> Path:
+    write_path: Path = base_output_path / execution_time / prefix
 
     write_path.mkdir(parents=True, exist_ok=True)
     return write_path
@@ -27,7 +25,7 @@ def _transform_json_data_to_parquet(
     base_input_path: Path,
     base_output_path: Path,
     city_name: str,
-    execution_time: datetime.datetime,
+    execution_time: str,
     prefix: str,
 ) -> None:
     input_path: Path = _get_input_path(
@@ -56,7 +54,7 @@ def transform_weather_data_to_parquet(
     base_input_path: Path,
     base_output_path: Path,
     city_name: str,
-    execution_time: datetime.datetime,
+    execution_time: str,
 ) -> None:
     logger.info(
         f"Transforming JSON data to parquet table representation for weather indicators for city {city_name}"
@@ -74,7 +72,7 @@ def transform_air_quality_data_to_parquet(
     base_input_path: Path,
     base_output_path: Path,
     city_name: str,
-    execution_time: datetime.datetime,
+    execution_time: str,
 ) -> None:
     logger.info(
         f"Transforming JSON data to parquet table representation for air quality indicators for city {city_name}"

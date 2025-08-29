@@ -176,3 +176,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Airflow stuff
+airflow/
+logs/
+airflow.db
+airflow.cfg
+unittests.cfg
+webserver_config.py
+simple_auth_manager*

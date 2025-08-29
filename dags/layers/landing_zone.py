@@ -27,16 +27,16 @@ def _get_data_from_api(
 
 
 def _get_path_to_write(
-    base_output_path: Path, execution_time: datetime.datetime, prefix: str
+    base_output_path: Path, execution_time: str, prefix: str
 ) -> Path:
-    write_path: Path = base_output_path / execution_time.isoformat() / prefix
+    write_path: Path = base_output_path / execution_time / prefix
     write_path.mkdir(parents=True, exist_ok=True)
     return write_path
 
 
 def query_weather_api(
     base_output_path: Path,
-    execution_time: datetime.datetime,
+    execution_time: str,
     latitude: float,
     longitude: float,
     city_name: str,
@@ -67,7 +67,7 @@ def query_weather_api(
 
 def query_air_quality_api(
     base_output_path: Path,
-    execution_time: datetime.datetime,
+    execution_time: str,
     latitude: float,
     longitude: float,
     city_name: str,

@@ -246,9 +246,9 @@ def generate_summary_statistics(df):
 
 def _get_output_path(
     base_output_path: Path,
-    execution_time: datetime.datetime,
+    execution_time: str,
 ) -> Path:
-    write_path: Path = base_output_path / execution_time.isoformat()
+    write_path: Path = base_output_path / execution_time
 
     write_path.mkdir(parents=True, exist_ok=True)
     return write_path
@@ -257,11 +257,9 @@ def _get_output_path(
 def calculate_analytics(
     base_input_path: Path,
     base_output_path: Path,
-    execution_time: datetime.datetime,
+    execution_time: str,
 ) -> None:
-    data_df: pl.DataFrame = pl.read_parquet(
-        base_input_path / execution_time.isoformat()
-    )
+    data_df: pl.DataFrame = pl.read_parquet(base_input_path / execution_time)
 
     precipitation_df: pl.DataFrame = analyze_precipitation_effect(data_df)
     wind_df: pl.DataFrame = analyze_wind_effect(data_df)

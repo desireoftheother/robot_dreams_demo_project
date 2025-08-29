@@ -8,17 +8,17 @@ from uuid import uuid4
 
 def _get_input_path(
     base_input_path: Path,
-    execution_time: datetime.datetime,
+    execution_time: str,
     prefix: str,
 ) -> Path:
-    return base_input_path / execution_time.isoformat() / prefix
+    return base_input_path / execution_time / prefix
 
 
 def _get_output_path(
     base_output_path: Path,
-    execution_time: datetime.datetime,
+    execution_time: str,
 ) -> Path:
-    write_path: Path = base_output_path / execution_time.isoformat()
+    write_path: Path = base_output_path / execution_time
 
     write_path.mkdir(parents=True, exist_ok=True)
     return write_path
@@ -28,7 +28,7 @@ def merge_and_clean_dataframes(
     base_input_path: Path,
     base_output_path: Path,
     prefixes: list[str],
-    execution_time: datetime.datetime,
+    execution_time: str,
 ) -> None:
     logger.info("Merge all data into one table representation")
     dfs_list: list[pl.LazyFrame] = []

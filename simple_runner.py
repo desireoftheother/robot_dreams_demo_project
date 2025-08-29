@@ -18,7 +18,8 @@ class City:
 
 
 if __name__ == "__main__":
-    current_dt: datetime.datetime = datetime.datetime.now()
+    current_dt_obj: datetime.datetime = datetime.datetime.now()
+    current_dt: str = current_dt_obj.isoformat()
     cities: list[City] = [
         City(50.450, 30.524, "Kyiv"),
         City(44.616, 33.525, "Sevastopol'"),
